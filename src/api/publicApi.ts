@@ -1,11 +1,16 @@
 import axios from 'axios';
 
-// Since Vite is proxying /api to the backend, we can use a relative URL
+// Use VITE_API_URL from environment variables or fallback to relative path for development
+const baseURL = import.meta.env.VITE_API_URL || '/api';
+
+console.log('API Base URL:', baseURL); // Debug log
+
 const publicApi = axios.create({
-  baseURL: '/api', // This will be relative to the current domain
+  baseURL,
   headers: {
     'Content-Type': 'application/json',
   },
+  withCredentials: true, // Important for cookies if using sessions
 });
 
 interface Product {
