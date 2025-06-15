@@ -36,11 +36,23 @@ import { pool, testConnection as testDbConnection } from './config/database.js';
 // Create Express app
 const app = express();
 
+// CORS configuration
+const corsOptions = {
+  origin: process.env.CORS_ORIGIN || 'http://localhost:5173',
+  methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
+  allowedHeaders: ['Content-Type', 'Authorization'],
+  credentials: true,
+  optionsSuccessStatus: 200 // For legacy browser support
+};
+
 // Middleware
-app.use(cors());
+app.use(cors(corsOptions));
 // Increase JSON and URL-encoded payload size limit to 50MB
 app.use(express.json({ limit: '50mb' }));
 app.use(express.urlencoded({ limit: '50mb', extended: true }));
+
+// Log CORS origin for debugging
+console.log('CORS Origin:', process.env.CORS_ORIGIN || 'http://localhost:5173');
 
 // Test database connection
 const testConnection = async () => {
