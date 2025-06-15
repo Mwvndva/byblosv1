@@ -166,7 +166,7 @@ export const sellerApi = {
   }): Promise<{ seller: Seller; token: string }> => {
     try {
       const response = await sellerApiInstance.post('/sellers/register', data);
-      const { data: responseData } = response.data;
+      const responseData = response.data?.data || response.data;
       
       if (!responseData) {
         throw new Error('Invalid response from server');
@@ -179,7 +179,7 @@ export const sellerApi = {
       }
       
       localStorage.setItem('sellerToken', token);
-      return { seller: transformSeller(response.data.seller), token: response.data.token };
+      return { seller: transformSeller(seller), token };
     } catch (error: any) {
       console.error('Registration error:', error);
       if (error.response?.data?.message) {

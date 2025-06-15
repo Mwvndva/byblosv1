@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { createBrowserRouter, Navigate, Outlet, useOutletContext, useNavigate } from 'react-router-dom';
+import { RouteObject, Navigate, Outlet, useOutletContext, useNavigate } from 'react-router-dom';
 import { SellerLayout } from '../components/layout/SellerLayout';
 import SellerDashboard from '../components/seller/SellerDashboard';
 import SellerRegistration from '../components/seller/SellerRegistration';
@@ -227,7 +227,7 @@ const GuestRoute = () => {
 };
 
 // Create the seller routes
-const sellerRoutes = [
+export const sellerRoutes: RouteObject[] = [
   {
     path: '/seller',
     element: <SellerLayout><Outlet /></SellerLayout>,
@@ -274,15 +274,11 @@ const sellerRoutes = [
           },
           {
             path: 'products/:id/edit',
-            element: (
-              <EditProductForm onSuccess={() => {}} />
-            ),
+            element: <EditProductForm onSuccess={() => {}} />,
           },
           {
             path: 'add-product',
-            element: (
-              <AddProductForm onSuccess={() => {}} />
-            ),
+            element: <AddProductForm onSuccess={() => {}} />,
           },
           {
             path: 'settings',
@@ -307,11 +303,3 @@ const sellerRoutes = [
     ],
   },
 ];
-
-// Export the routes array for use in the main router
-export { sellerRoutes };
-
-// Create and export the browser router with basename
-export const sellerRouter = createBrowserRouter(sellerRoutes, {
-  basename: import.meta.env.BASE_URL || '/',
-});

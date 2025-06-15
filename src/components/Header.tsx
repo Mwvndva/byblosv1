@@ -1,7 +1,6 @@
-
 import { Button } from '@/components/ui/button';
 import { Link } from 'react-router-dom';
-import { Instagram } from 'lucide-react';
+import { Instagram, Calendar, ShoppingBag } from 'lucide-react';
 
 const Header = () => {
   return (
@@ -15,8 +14,13 @@ const Header = () => {
             </h1>
           </Link>
 
+          {/* Empty navigation container to maintain layout */}
+          <div className="hidden md:flex items-center space-x-6">
+            {/* Navigation links removed */}
+          </div>
+
           {/* Seller Action and Social */}
-          <div className="flex items-center space-x-2">
+          <div className="flex items-center space-x-4">
             <a 
               href="https://www.instagram.com/byblos.exp" 
               target="_blank" 
@@ -28,9 +32,9 @@ const Header = () => {
             </a>
             <Link to="/seller">
               <Button 
-                variant="ghost" 
+                variant="outline" 
                 size="sm" 
-                className="flex items-center justify-center hover:bg-black hover:text-white transition-colors"
+                className="border-gray-300 text-gray-700 hover:bg-gray-50"
               >
                 <span className="text-sm font-medium">Become a Seller</span>
               </Button>
