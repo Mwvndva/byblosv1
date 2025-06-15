@@ -63,7 +63,6 @@ export interface Order {
 interface SellerAnalytics {
   totalProducts: number;
   publishedProducts: number;
-  draftProducts: number;
   totalRevenue: number;
   monthlySales: Array<{ month: string; sales: number }>;
 }

@@ -76,9 +76,10 @@ export const createProduct = async (req, res) => {
         image_url, 
         seller_id, 
         aesthetic,
+        status,
         created_at,
         updated_at
-      ) VALUES ($1, $2, $3, $4, $5, $6, NOW(), NOW())
+      ) VALUES ($1, $2, $3, $4, $5, $6, 'available', NOW(), NOW())
        RETURNING *`,
       [
         name.trim(), 
