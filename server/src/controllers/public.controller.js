@@ -12,13 +12,13 @@ export const getProducts = async (req, res) => {
              s.email as seller_email
       FROM products p
       JOIN sellers s ON p.seller_id = s.id
-      WHERE 1=1
+      WHERE p.status = $1
     `;
     
-    const queryParams = [];
-    let paramCount = 1;
+    const queryParams = ['available']; // Only show available products
+    let paramCount = 2; // Start from 2 since we already have one parameter
     
-    if (aesthetic) {
+    if (aesthetic && aesthetic !== 'all') {
       query += ` AND p.aesthetic = $${paramCount++}`;
       queryParams.push(aesthetic);
     }
